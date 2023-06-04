@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Database Backup</title>
-</head>
+{% extends "mainhandler.html" %}
+{% block body %}
 <body>
     <h1>Database Backup</h1>
     <form method="POST" action="/backup">
         <input type="submit" value="Backup Database">
     </form>
-</body>
-</html>
+
+{% endblock %}
