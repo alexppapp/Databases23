@@ -7,7 +7,7 @@ ALTER TABLE Main_Handler add constraint unique (Username, Passwords);
 
 ALTER TABLE Users add constraint unique (Username, Passwords);
 
-#ALTER TABLE Books add constraint check (ISBN = 13);
+ALTER TABLE Books add constraint unique(ISBN);
 
 ALTER TABLE Rents add constraint check(StartD < due_d);
 
