@@ -209,6 +209,44 @@ def search_books():
         return render_template('books.html', results=results)
 
     return render_template('books.html', results=None)
+###
+
+
+@app.route('/inbook', methods=['POST','GET'])
+def insert_books():
+    if request.method == 'POST':
+    # Insert book into the database
+        isbn = request.form.get('isbn')
+        title = request.form.get('title')
+        author = request.form.get('author')
+        publisher = request.form.get('publisher')
+        npages = request.form.get('npages')
+        summary = request.form.get('summary')
+        ncopies = request.form.get('ncopies')
+        acopies = request.form.get('acopies')
+        image = request.form.get('image')
+        theme = request.form.get('theme')
+        blanguage = request.form.get('blanguage')
+        word_keys = request.form.get('word_keys')
+        s_unit = request.form.get('s_unit')
+        huser = request.form.get('huser')
+
+
+
+        # Execute the query
+        query = """
+        INSERT INTO Books (ISBN, Title, Author, Publisher, Npages, Summary, Ncopies, Acopies, Image, Theme, Blanguage, Word_Keys, Sunit, Huser)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """
+        values = (isbn, title, author, publisher, npages, summary, ncopies, acopies, image, theme, blanguage, word_keys, s_unit, huser)
+        cursor.execute(query, values)
+
+        # Commit and close the connection
+        cnx.commit()
+        return 'Query executed successfully!'
+    return render_template('inbooks.html')
+
+
 
 
 @app.route('/rentsusers', methods=['POST','GET'])
