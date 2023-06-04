@@ -1,0 +1,29 @@
+{% extends "mainhandler.html" %}
+{% block body %}
+<center>
+  <h2>Author's Book which don't be rented</h2>
+
+  <div id="infoContainer">
+    {% if results %}
+      <table>
+        <thead>
+          <tr>
+            <th>Author</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in results %}
+            <tr>
+              <td>{{ row[0] }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No author found with book which not rented.</p>
+    {% endif %}
+  </div>
+</center>
+
+
+{% endblock %}

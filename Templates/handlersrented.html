@@ -1,0 +1,29 @@
+{% extends "mainhandler.html" %}
+{% block body %}
+<center>
+  <h2>Operators who have borrowed more than 20 books in a year</h2>
+
+  <div id="infoContainer">
+    {% if results %}
+      <table>
+        <thead>
+          <tr>
+            <th>Handlers</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in results %}
+            <tr>
+              <td>{{ row[0] }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>no handlers were found who have lent more than 20 books in a year.</p>
+    {% endif %}
+  </div>
+</center>
+
+
+{% endblock %}

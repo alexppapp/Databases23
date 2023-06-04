@@ -1,0 +1,29 @@
+{% extends "mainhandler.html" %}
+{% block body %}
+<center>
+  <h2>Authors who have written at least 5 books less than the author with the most publications</h2>
+
+  <div id="infoContainer">
+    {% if results %}
+      <table>
+        <thead>
+          <tr>
+            <th>Author</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in results %}
+            <tr>
+              <td>{{ row[0] }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No authors who have written at least 5 books less than the author with the most publication</p>
+    {% endif %}
+  </div>
+</center>
+
+
+{% endblock %}
