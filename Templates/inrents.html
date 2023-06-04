@@ -1,0 +1,26 @@
+{% extends "handler.html" %}
+{% block body %}
+
+    <h1>Insert Rent</h1>
+    <form action="/insrent" method="POST" >
+        <label for="StartD">StarD:</label><br>
+        <input type="text" id="StartD" name="StartD"><br>
+        
+        <label for="ReturnD">ReturnD:</label><br>
+        <input type="text" id="ReturnD" name="ReturnD"><br>
+        
+
+        <label for="Users">Users:</label><br>
+        <input type="text" id="Users" name="Users"><br>
+        
+        <label for="ISBN">ISBN:</label><br>
+        <input type="text" id="ISBN" name="ISBN"><br>
+
+        <label for="S_unit">S_unit:</label><br>
+        <input type="text" id="S_unit" name="S_unit"><br>
+        
+        
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}

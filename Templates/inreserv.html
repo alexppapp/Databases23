@@ -1,0 +1,22 @@
+{% extends "handler.html" %}
+{% block body %}
+
+    <h1>Insert Reservations</h1>
+    <form action="/insrent" method="POST" >
+        <label for="Reserv">Reservation:</label><br>
+        <input type="text" id="Reserv" name="Reserv"><br>
+        
+        <label for="SDay">Start Day:</label><br>
+        <input type="text" id="SDay" name="SDay"><br>
+        
+        <label for="Ddat">Due day:</label><br>
+        <input type="text" id="Ddat" name="Ddat"><br>
+        
+        <label for="Usern">Users:</label><br>
+        <input type="text" id="Usern" name="Usern"><br>
+
+        
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}

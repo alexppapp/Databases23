@@ -1,0 +1,27 @@
+{% extends "handler.html" %}
+{% block body %}
+    <h1>Update Book</h1>
+    <form action="/update_book" method="POST">
+        <label for="isbn">ISBN:</label><br>
+        <input type="text" id="isbn" name="isbn"><br>
+
+        <label for="attribute">Attributes:</label><br>
+        <select multiple id="attribute" name="attribute">
+            <option value="Title">Title</option>
+            <option value="Author">Author</option>
+            <option value="Publisher">Publisher</option>
+            <option value="Npages">Number of pages</option>
+            <option value="Summary">Summary</option>
+            <option value="Ncopies">Number of copies</option>
+            <option value="Acopies">Available copies</option>
+            
+
+            <!-- Add more options for other attributes -->
+        </select><br>
+
+        <label for="new_value">New Values:</label><br>
+        <textarea id="new_value" name="new_value"></textarea><br>
+
+        <input type="submit" value="Update">
+    </form>
+{% endblock %}

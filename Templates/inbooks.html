@@ -1,0 +1,51 @@
+{% extends "handler.html" %}
+{% block body %}
+
+    <h1>Insert Book</h1>
+    <form action="/inbook" method="POST" >
+        <label for="ISBN">ISBN:</label><br>
+        <input type="text" id="isbn" name="isbn"><br>
+        
+        <label for="Title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        
+        <label for="Author">Author:</label><br>
+        <input type="text" id="author" name="author"><br>
+        
+        <label for="Publisher">Publisher:</label><br>
+        <input type="text" id="publisher" name="publisher"><br>
+        
+        <label for="Npages">Number of Pages:</label><br>
+        <input type="text" id="npages" name="npages"><br>
+        
+        <label for="Summary">Summary:</label><br>
+        <textarea id="summary" name="summary"></textarea><br>
+        
+        <label for="Ncopies">Number of Copies:</label><br>
+        <input type="text" id="ncopies" name="ncopies"><br>
+        
+        <label for="Acopies">Available Copies:</label><br>
+        <input type="text" id="acopies" name="acopies"><br>
+        
+        <label for="Image">Image URL:</label><br>
+        <input type="text" id="image" name="image"><br>
+        
+        <label for="Theme">Theme:</label><br>
+        <input type="text" id="theme" name="theme"><br>
+        
+        <label for="Blanguage">Book Language:</label><br>
+        <input type="text" id="blanguage" name="blanguage"><br>
+        
+        <label for="word_keys">Keywords:</label><br>
+        <input type="text" id="word_keys" name="word_keys"><br>
+        
+        <label for="S_unit">Storage Unit:</label><br>
+        <input type="text" id="s_unit" name="s_unit"><br>
+        
+        <label for="Huser">History User:</label><br>
+        <input type="text" id="huser" name="huser"><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}

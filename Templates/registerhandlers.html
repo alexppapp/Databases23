@@ -1,0 +1,30 @@
+{% extends "mainhandler.html" %}
+{% block body %}
+
+    <h1>Register Handler</h1>
+    <form action="/register" method="POST" >
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password"><br>
+        
+        
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="surname">Surname:</label><br>
+        <input type="text" id="surname" name="surname"><br>
+
+        <label for="sname">School name:</label><br>
+        <input type="text" id="sname" name="sname"><br>
+
+        <label for="Mhandler">Main Handler:</label><br>
+        <input type="text" id="Mhandler" name="Mhandler"><br>
+        
+
+        
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}

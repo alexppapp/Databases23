@@ -1,0 +1,55 @@
+{% extends "mainhandler.html" %}
+{% block body %}
+<center>
+  <h2>Filter Form</h2>
+  <form action="/authors" method="POST">
+    <div>
+      <label for="Theme">Theme:</label>
+      <select id="Theme" name="Theme" required>
+        <option value='Business' {% if Theme == 'Business' %} selected {% endif %}>Business</option>
+        <option value='Non-fiction' {% if Theme == 'Non-fiction' %} selected {% endif %}>Non-fiction</option>
+        <option value='Mystery' {% if Theme == 'Mystery' %} selected {% endif %}>Mystery</option>
+        <option value='Fiction' {% if Theme == 'Fiction' %} selected {% endif %}>Fiction</option>
+        <option value='Poetry' {% if Theme == 'Poetry' %} selected {% endif %}>Poetry</option>
+        <option value='Historical fiction' {% if Theme == 'Historical fiction' %} selected {% endif %}>Historical fiction</option>
+        <option value='Romance' {% if Theme == 'Romance' %} selected {% endif %}>Romance</option>
+        <option value='Personal Development' {% if Theme == 'Personal Development' %} selected {% endif %}>Personal Development</option>
+        <option value='Travel' {% if Theme == 'Travel' %} selected {% endif %}>Travel</option>
+        <option value='Philosophy' {% if Theme == 'Philosophy' %} selected {% endif %}>Philosophy</option>
+        <option value='Thriller' {% if Theme == 'Thriller' %} selected {% endif %}>Thriller</option>
+        <option value='Science fiction' {% if Theme == 'Science fiction' %} selected {% endif %}>Science fiction</option>
+        <option value='Fantasy' {% if Theme == 'Fantasy' %} selected {% endif %}>Fantasy</option>
+        <option value='Biography' {% if Theme == 'Biography' %} selected {% endif %}>Biography</option>
+        <option value='Science' {% if Theme == 'Science' %} selected {% endif %}>Science</option>
+
+        <!-- Add more options for the remaining months -->
+      </select>
+    </div>
+    <div>
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+  {% if results %}
+  <h2>Authors by Theme</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Author</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in results %}
+        <tr>
+          <td>{{ row[0] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>Nothing found.</p>
+{% endif %}
+
+</center>
+
+
+{% endblock %}

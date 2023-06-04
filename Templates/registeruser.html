@@ -1,0 +1,32 @@
+{% extends "handler.html" %}
+{% block body %}
+
+    <h1>Register new user</h1>
+    <form action="/register" method="POST" >
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password"><br>
+        
+        <label for="isteacher">Is he/she a teacher:</label><br>
+        <input type="checkbox" id="Ddat" name="Ddat"><br>
+        
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="surname">Surname:</label><br>
+        <input type="text" id="surname" name="surname"><br>
+
+        <label for="age">Age:</label><br>
+        <input type="text" id="age" name="age"><br>
+
+        <label for="nrents">Number of Rents:</label><br>
+        <input type="text" id="nrents" name="nrents"><br>
+        
+
+        
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}

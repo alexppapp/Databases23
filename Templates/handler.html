@@ -1,0 +1,21 @@
+<!doctype html>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1>Handler</h1>
+  <div class=metanav>
+
+    <a href="/">Home Page</a>
+    <a href="/books">Books</a>
+    <a href="/rentsusers">Rents by users</a>
+    <a href="/reviews">Average review by users</a>
+    <a href="/update_book">Alter the books informantion</a>
+    <a href="/inbook">Insert books</a>
+    <a href="/insrent">Insert new rents</a>
+    <a href="/rerent">Insert returns</a>
+    <a href="/reserv"> Insert a new reservation</a>
+    <a href="/register"> Register a new user</a>
+
+
+  </div>
+  {% block body %}{% endblock %}
+</div>

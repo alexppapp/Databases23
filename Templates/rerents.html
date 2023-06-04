@@ -1,0 +1,15 @@
+{% extends "handler.html" %}
+{% block body %}
+
+    <h1>Insert Returns</h1>
+    <form action="/insrent" method="POST" >
+        <label for="Return">Return Date:</label><br>
+        <input tyoe = "text" id="Return" name = "Return"><br>
+
+        <label for="ISBN">ISBN:</label><br>
+        <input type="text" id="ISBN" name="ISBN"><br>
+            
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}
