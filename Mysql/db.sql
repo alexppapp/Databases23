@@ -146,3 +146,10 @@ ADD CONSTRAINT FK_Mhandler
 FOREIGN KEY (Mhandler) REFERENCES Main_Handler(Username);
 
 alter table Users add index (isteacher);
+
+alter table Users
+add column S_unit varchar(255);
+
+alter table Users
+add constraint FK_S
+foreign key (S_unit) references School_Unit(Sname);
