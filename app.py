@@ -37,8 +37,8 @@ def check_credentials(username,password):   #an den einai tipota poulo
         cursor.execute(q)
         results = cursor.fetchall()
      if results: return '/users'
-     else: 
-        return '/' #xtipaei an den baleis swstous typous
+     else:
+         return '/'
           
 
 
@@ -51,16 +51,56 @@ def login_form():
 
 @app.route("/login",methods = ['POST','GET'])
 def login():
-    username = request.form['username']
-    password = request.form['password']
-    result =check_credentials(username,password)
-    return redirect(result)
+    if request.method=='POST':
+        username = request.form['username']
+        password = request.form['password']
+        result =check_credentials(username,password)
+        return redirect(result)
 
 
 
 @app.route("/mainhandler")
 def main_handler():
     return render_template('mainhandler.html')
+
+@app.route('/delete_table', methods=['GET', 'POST'])
+def delete_table():
+    if request.method == 'POST':
+        table_name = request.form['table_name']
+
+        # Execute the delete statement
+        query = f"DELETE FROM {table_name};"
+        cursor.execute(query)
+        cnx.commit()
+
+        return 'Table data deleted successfully!'
+
+    return render_template('delete.html')
+
+
+@app.route('/registerm', methods=['POST', 'GET'])
+def regm():
+    if request.method == 'POST':
+        # Insert user into the database
+        username = request.form.get('username')
+        password = request.form.get('password')
+        name = request.form.get('name')
+        surname = request.form.get('surname')
+        sname = request.form.get('sname')
+        Mhandler = request.form.get('Mhandler')
+
+        # Execute the query
+        query = """
+        INSERT INTO Users (Username, Passwords, Firstname, Lastname, Sname, Mhandler)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        values = (username, password, name, surname, sname, Mhandler)
+        cursor.execute(query, values)
+
+        # Commit and close the connection
+        cnx.commit()
+        return 'Query executed successfully!'
+    return render_template('registerhandlers.html')
 
 @app.route('/totalrents')
 def get_rent_list():
@@ -209,7 +249,6 @@ def search_books():
         return render_template('books.html', results=results)
 
     return render_template('books.html', results=None)
-###
 
 
 @app.route('/inbook', methods=['POST','GET'])
@@ -246,6 +285,127 @@ def insert_books():
         return 'Query executed successfully!'
     return render_template('inbooks.html')
 
+@app.route('/insrent',methods = ['POST','GET'])
+def ins_rents():
+    if request.method == 'POST':
+    # Insert book into the database
+        StartD = request.form.get('StartD')
+        ReturnD = request.form.get('ReturnD')
+        due_d = request.form.get('due_d')
+        Users = request.form.get('Users')
+        ISBN = request.form.get('ISBN')
+        S_unit = request.form.get('S_unit')
+
+        # Execute the query
+        query = """
+        INSERT INTO Rents (StartD, Returnd, due_d, Users, ISBN, S_unit)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        values = (StartD, ReturnD, due_d, Users, ISBN, S_unit)
+        cursor.execute(query, values)
+
+        # Commit and close the connection
+        cnx.commit()
+        return 'Query executed successfully!'
+    return render_template('inrents.html')
+
+@app.route('/reserv',methods = ['POST','GET'])
+def ins_reserv():
+    if request.method == 'POST':
+    # Insert book into the database
+        Reserv = request.form.get('Reserv')
+        SDay = request.form.get('SDay')
+        Usern = request.form.get('Usern')
+        ISBN = request.form.get('ISBN')
+
+        # Execute the query
+        query = """
+        INSERT INTO Reservations (Applications, SDay, Ddat, Usern, ISBN)
+        VALUES (%s, %s, %s, %s, %s)
+        """
+        values = (Reserv, SDay,  Usern, ISBN)
+        cursor.execute(query, values)
+
+        # Commit and close the connection
+        cnx.commit()
+        return 'Query executed successfully!'
+    return render_template('inreserv.html')
+
+@app.route('/rerent',methods = ['POST','GET'])
+def ins_retur():
+    if request.method == 'POST':
+    # Insert book into the database
+        Return = request.form.get('Return')
+        ISBN = request.form.get('ISBN')
+        # Execute the query
+        query = f"""
+        INSERT INTO Rents (due_d)
+        VALUES (%s)
+        WHERE ISBN = '{ISBN}';
+        """
+        values = (Return)
+        cursor.execute(query, values)
+
+        # Commit and close the connection
+        cnx.commit()
+        return 'Query executed successfully!'
+    return render_template('rerents.html')
+
+@app.route('/register', methods=['POST', 'GET'])
+def reg():
+    if request.method == 'POST':
+        # Insert user into the database
+        username = request.form.get('username')
+        password = request.form.get('password')
+        isteacher = bool(request.form.get('isteacher'))
+        name = request.form.get('name')
+        surname = request.form.get('surname')
+        age = request.form.get('age')
+        nrents = request.form.get('nrents')
+
+        # Execute the query
+        query = """
+        INSERT INTO Users (Username, Passwords, isteacher, name, surname, Age, nrents)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """
+        values = (username, password, isteacher, name, surname, age, nrents)
+        cursor.execute(query, values)
+
+        # Commit and close the connection
+        cnx.commit()
+        return 'Query executed successfully!'
+    return render_template('registeruser.html')
+
+
+
+@app.route('/update_book', methods=['GET', 'POST'])
+def update_book():
+    if request.method == 'POST':
+        isbn = request.form.get('isbn')
+        attributes = request.form.getlist('attribute')
+        new_values = request.form.getlist('new_value')
+
+        # Check if the lists of attributes and values have the same length
+        if len(attributes) != len(new_values):
+            return 'Invalid input'
+
+        # Construct the SET clause for the UPDATE statement
+        set_clause = ', '.join(f"{attribute} = %s" for attribute in attributes)
+
+        # Execute the query
+        query = f"""
+        UPDATE Books
+        SET {set_clause}
+        WHERE ISBN = %s
+        """
+        values = new_values + [isbn]
+        cursor.execute(query, values)
+
+        # Commit and close the connection
+        cnx.commit()
+        return 'Book updated successfully!'
+
+    return render_template('update_book.html')
 
 
 
