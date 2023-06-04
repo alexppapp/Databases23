@@ -63,6 +63,33 @@ def login():
 def main_handler():
     return render_template('mainhandler.html')
 
+@app.route('/backup')
+def b():
+    return render_template('backup.html')
+
+@app.route('/backup', methods=['POST'])
+def backup_database():
+    db_config = {
+    'user': 'root',
+    'password': 'newpassword',
+    'host': 'localhost',
+    'database': 'SCHOOL',
+}
+
+
+    # Backup file path
+    backup_file = 'database_backup.sql'
+
+    # Command to execute database backup
+    command = f'mysqldump -u {db_config["user"]} -p{db_config["password"]} -h {db_config["host"]} {db_config["database"]} > {backup_file}'
+
+    try:
+        # Execute the backup command
+        subprocess.run(command, shell=True, check=True)
+        return 'Database backup created successfully!'
+    except subprocess.CalledProcessError as e:
+        return f'An error occurred while creating the database backup: {str(e)}'
+
 @app.route('/delete_table', methods=['GET', 'POST'])
 def delete_table():
     if request.method == 'POST':
